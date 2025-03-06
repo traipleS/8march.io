@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>С 8 Марта, любимая!</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="hearts">
+        <!-- Сердечки для фона -->
+        <div class="heart"></div>
+        <div class="heart"></div>
+        <div class="heart"></div>
+        <div class="heart"></div>
+        <div class="heart"></div>
+    </div>
+    <div class="container">
+        <h1 class="name">Имя твоей девушки</h1>
+        <div class="photos">
+            <img src="/img/img1.jpg" alt="Наше фото 1" class="photo">
+            <img src="/img/img2.jpg" alt="Наше фото 2" class="photo">
+        </div>
+        <p class="message">С 8 Марта, моя любимая! Ты — самое прекрасное, что есть в моей жизни!</p>
+        <button class="surprise-button">Нажми на меня!</button>
+        <button class="background-button">Изменить фон</button>
+        <input type="file" id="background-input" accept="image/*" style="display: none;">
+    </div>
+    <div class="popup">
+        <div class="popup-content">
+            <span class="close">&times;</span>
+            <p>Ты самая красивая, добрая и нежная! Я тебя люблю! 💖</p>
+        </div>
+    </div>
+
+    <script>
+        // Открытие всплывающего окна
+        const surpriseButton = document.querySelector('.surprise-button');
+        const popup = document.querySelector('.popup');
+        const closeButton = document.querySelector('.close');
+    
+        surpriseButton.addEventListener('click', () => {
+            popup.style.display = 'flex';
+        });
+    
+        closeButton.addEventListener('click', () => {
+            popup.style.display = 'none';
+        });
+    
+        // Закрытие окна при клике вне его
+        window.addEventListener('click', (event) => {
+            if (event.target === popup) {
+                popup.style.display = 'none';
+            }
+        });
+    
+        // Изменение фона
+        const backgroundButton = document.querySelector('.background-button');
+        const backgroundInput = document.getElementById('background-input');
+    
+        backgroundButton.addEventListener('click', () => {
+            backgroundInput.click();
+        });
+    
+        backgroundInput.addEventListener('change', (event) => {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.body.style.backgroundImage = `url(${e.target.result})`;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
+
+</body>
+</html>
